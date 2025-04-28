@@ -1,6 +1,4 @@
 using MySql.Data.MySqlClient;
-using System.Windows.Forms;
-using System;
 
 namespace AfwezigheidsApp
 {
@@ -9,10 +7,14 @@ namespace AfwezigheidsApp
         public LoginFormulier()
         {
             InitializeComponent();
+            Logger.Debug("LoginFormulier initialized");
         }
 
         private void btnLogin_Click(object? sender, EventArgs e)
         {
+            Logger.Debug("Login button clicked");
+            
+            // Controleer of beide velden zijn ingevuld
             if (string.IsNullOrWhiteSpace(txtGebruikersnaam?.Text) || string.IsNullOrWhiteSpace(txtWachtwoord?.Text))
             {
                 MessageBox.Show("Vul alle velden in.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -23,24 +25,52 @@ namespace AfwezigheidsApp
             try
             {
                 conn.Open();
-                string query = @"SELECT werknemer_id, wachtwoord_hash, rol FROM Werknemers 
-                               WHERE gebruikersnaam = @gebruikersnaam";
-                using var cmd = new MySqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@gebruikersnaam", txtGebruikersnaam.Text);
 
-                using var reader = cmd.ExecuteReader();
-                if (reader.Read())
+                // Genereer een SHA512 hash van het wachtwoord
+                // We laten MySQL dit doen voor consistentie
+                using var hashCmd = new MySqlCommand("SELECT SHA2(@password, 512) as hash", conn);
+                hashCmd.Parameters.AddWithValue("@password", txtWachtwoord.Text);
+                string passwordHash = hashCmd.ExecuteScalar()?.ToString() ?? "";
+
+                // Haal de gebruikersgegevens op uit de database
+                string query = @"SELECT werknemer_id, wachtwoord_hash, rol 
+                               FROM Gebruikers
+                               WHERE gebruikersnaam = @gebruikersnaam";
+                
+                using var loginCmd = new MySqlCommand(query, conn);
+                loginCmd.Parameters.AddWithValue("@gebruikersnaam", txtGebruikersnaam.Text);
+
+                string storedHash = "";
+                int werknemerId = 0;
+                string rol = "";
+                bool userFound = false;
+
+                // Lees de gebruikersgegevens uit
+                using (var reader = loginCmd.ExecuteReader())
                 {
-                    string hashedPassword = reader.GetString("wachtwoord_hash");
-                    var sha256Hash = System.Security.Cryptography.SHA256.HashData(
-                        System.Text.Encoding.UTF8.GetBytes(txtWachtwoord.Text));
-                    var base64Hash = Convert.ToBase64String(sha256Hash);
-                    
-                    if (hashedPassword == base64Hash)
+                    if (reader.Read())
                     {
-                        int werknemerId = reader.GetInt32("werknemer_id");
-                        string rol = reader.GetString("rol");
-                        
+                        userFound = true;
+                        storedHash = reader.GetString("wachtwoord_hash");
+                        werknemerId = reader.GetInt32("werknemer_id");
+                        rol = reader.GetString("rol");
+                    }
+                    else
+                    {
+                        // Gebruiker niet gevonden, toon foutmelding
+                        MessageBox.Show("Ongeldige inloggegevens.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+
+                if (userFound)
+                {
+                    // Vergelijk de gegenereerde hash met de opgeslagen hash
+                    bool passwordValid = passwordHash.Equals(storedHash, StringComparison.OrdinalIgnoreCase);
+
+                    if (passwordValid)
+                    {
+                        // Login succesvol, open het hoofdscherm
                         this.Hide();
                         var mainForm = new MainForm(rol, werknemerId);
                         mainForm.ShowDialog();
@@ -48,16 +78,15 @@ namespace AfwezigheidsApp
                     }
                     else
                     {
+                        // Wachtwoord onjuist
                         MessageBox.Show("Ongeldige inloggegevens.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Ongeldige inloggegevens.", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
+                // Log de fout en toon een gebruikersvriendelijke melding
+                Logger.Debug($"Login error: {ex.Message}");
                 MessageBox.Show($"Er is een fout opgetreden: {ex.Message}", "Fout", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

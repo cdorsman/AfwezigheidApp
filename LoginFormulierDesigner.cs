@@ -38,7 +38,7 @@ namespace AfwezigheidsApp
             // lblGebruikersnaam
             // 
             this.lblGebruikersnaam.AutoSize = true;
-            this.lblGebruikersnaam.Location = new System.Drawing.Point(20, 30);
+            this.lblGebruikersnaam.Location = new System.Drawing.Point(150, 50);
             this.lblGebruikersnaam.Name = "lblGebruikersnaam";
             this.lblGebruikersnaam.Size = new System.Drawing.Size(110, 17);
             this.lblGebruikersnaam.TabIndex = 0;
@@ -46,15 +46,15 @@ namespace AfwezigheidsApp
             // 
             // txtGebruikersnaam
             // 
-            this.txtGebruikersnaam.Location = new System.Drawing.Point(140, 27);
+            this.txtGebruikersnaam.Location = new System.Drawing.Point(270, 47);
             this.txtGebruikersnaam.Name = "txtGebruikersnaam";
-            this.txtGebruikersnaam.Size = new System.Drawing.Size(200, 22);
+            this.txtGebruikersnaam.Size = new System.Drawing.Size(230, 22);
             this.txtGebruikersnaam.TabIndex = 1;
             // 
             // lblWachtwoord
             // 
             this.lblWachtwoord.AutoSize = true;
-            this.lblWachtwoord.Location = new System.Drawing.Point(20, 70);
+            this.lblWachtwoord.Location = new System.Drawing.Point(150, 90);
             this.lblWachtwoord.Name = "lblWachtwoord";
             this.lblWachtwoord.Size = new System.Drawing.Size(110, 17);
             this.lblWachtwoord.TabIndex = 2;
@@ -62,17 +62,17 @@ namespace AfwezigheidsApp
             // 
             // txtWachtwoord
             // 
-            this.txtWachtwoord.Location = new System.Drawing.Point(140, 67);
+            this.txtWachtwoord.Location = new System.Drawing.Point(270, 87);
             this.txtWachtwoord.Name = "txtWachtwoord";
-            this.txtWachtwoord.Size = new System.Drawing.Size(200, 22);
+            this.txtWachtwoord.Size = new System.Drawing.Size(230, 22);
             this.txtWachtwoord.TabIndex = 3;
             this.txtWachtwoord.PasswordChar = '*';
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(140, 110);
+            this.btnLogin.Location = new System.Drawing.Point(270, 130);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(100, 30);
+            this.btnLogin.Size = new System.Drawing.Size(120, 30);
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Inloggen";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -83,7 +83,7 @@ namespace AfwezigheidsApp
             this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(380, 170);
+            this.ClientSize = new System.Drawing.Size(800, 280);
             this.Controls.Add(this.lblGebruikersnaam);
             this.Controls.Add(this.txtGebruikersnaam);
             this.Controls.Add(this.lblWachtwoord);
@@ -92,6 +92,8 @@ namespace AfwezigheidsApp
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(800, 280);
+            this.MaximumSize = new System.Drawing.Size(800, 280);
             this.Name = "LoginFormulier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inloggen";

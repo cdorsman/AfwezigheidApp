@@ -10,7 +10,7 @@ partial class MainForm
     /// <summary>
     ///  Clean up any resources being used.
     /// </summary>
-    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+    /// <param name="disposing">true if managed resources should be disposed; otherwise,</param>
     protected override void Dispose(bool disposing)
     {
         if (disposing && (components != null))
@@ -30,8 +30,11 @@ partial class MainForm
     {
         this.components = new System.ComponentModel.Container();
         this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.ClientSize = new System.Drawing.Size(250, 450);
+        this.ClientSize = new System.Drawing.Size(800, 400);
+        this.MinimumSize = new System.Drawing.Size(800, 400);
+        this.MaximumSize = new System.Drawing.Size(800, 400);
         this.Text = "Afwezigheid registratie";
+        this.StartPosition = FormStartPosition.CenterScreen;
     }
 
     #endregion

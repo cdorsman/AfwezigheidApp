@@ -48,7 +48,7 @@ namespace AfwezigheidsApp
             // lblVerlofType
             // 
             this.lblVerlofType.AutoSize = true;
-            this.lblVerlofType.Location = new System.Drawing.Point(30, 30);
+            this.lblVerlofType.Location = new System.Drawing.Point(150, 30);
             this.lblVerlofType.Name = "lblVerlofType";
             this.lblVerlofType.Size = new System.Drawing.Size(80, 17);
             this.lblVerlofType.TabIndex = 0;
@@ -59,15 +59,15 @@ namespace AfwezigheidsApp
             this.cmbVerlofType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbVerlofType.FormattingEnabled = true;
             this.cmbVerlofType.Items.AddRange(new object[] {"Ziek", "Betaald", "Onbetaald", "Vakantie"});
-            this.cmbVerlofType.Location = new System.Drawing.Point(130, 27);
+            this.cmbVerlofType.Location = new System.Drawing.Point(270, 27);
             this.cmbVerlofType.Name = "cmbVerlofType";
-            this.cmbVerlofType.Size = new System.Drawing.Size(180, 24);
+            this.cmbVerlofType.Size = new System.Drawing.Size(230, 24);
             this.cmbVerlofType.TabIndex = 1;
             // 
             // lblStartDatum
             // 
             this.lblStartDatum.AutoSize = true;
-            this.lblStartDatum.Location = new System.Drawing.Point(30, 70);
+            this.lblStartDatum.Location = new System.Drawing.Point(150, 70);
             this.lblStartDatum.Name = "lblStartDatum";
             this.lblStartDatum.Size = new System.Drawing.Size(76, 17);
             this.lblStartDatum.TabIndex = 2;
@@ -75,15 +75,15 @@ namespace AfwezigheidsApp
             // 
             // dtpStartDatum
             // 
-            this.dtpStartDatum.Location = new System.Drawing.Point(130, 67);
+            this.dtpStartDatum.Location = new System.Drawing.Point(270, 67);
             this.dtpStartDatum.Name = "dtpStartDatum";
-            this.dtpStartDatum.Size = new System.Drawing.Size(180, 22);
+            this.dtpStartDatum.Size = new System.Drawing.Size(230, 22);
             this.dtpStartDatum.TabIndex = 3;
             // 
             // lblEindDatum
             // 
             this.lblEindDatum.AutoSize = true;
-            this.lblEindDatum.Location = new System.Drawing.Point(30, 110);
+            this.lblEindDatum.Location = new System.Drawing.Point(150, 110);
             this.lblEindDatum.Name = "lblEindDatum";
             this.lblEindDatum.Size = new System.Drawing.Size(71, 17);
             this.lblEindDatum.TabIndex = 4;
@@ -91,16 +91,16 @@ namespace AfwezigheidsApp
             // 
             // dtpEindDatum
             // 
-            this.dtpEindDatum.Location = new System.Drawing.Point(130, 107);
+            this.dtpEindDatum.Location = new System.Drawing.Point(270, 107);
             this.dtpEindDatum.Name = "dtpEindDatum";
-            this.dtpEindDatum.Size = new System.Drawing.Size(180, 22);
+            this.dtpEindDatum.Size = new System.Drawing.Size(230, 22);
             this.dtpEindDatum.TabIndex = 5;
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(130, 150);
+            this.btnSubmit.Location = new System.Drawing.Point(270, 150);
             this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(100, 30);
+            this.btnSubmit.Size = new System.Drawing.Size(120, 30);
             this.btnSubmit.TabIndex = 6;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
@@ -111,7 +111,7 @@ namespace AfwezigheidsApp
             this.AcceptButton = this.btnSubmit;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(360, 210);
+            this.ClientSize = new System.Drawing.Size(800, 300);
             this.Controls.Add(this.lblVerlofType);
             this.Controls.Add(this.cmbVerlofType);
             this.Controls.Add(this.lblStartDatum);
@@ -122,6 +122,8 @@ namespace AfwezigheidsApp
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(800, 300);
+            this.MaximumSize = new System.Drawing.Size(800, 300);
             this.Name = "AfwezigheidRegistratieFormulier";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registreer afwezigheid";

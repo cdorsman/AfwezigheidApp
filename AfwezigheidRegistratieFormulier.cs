@@ -12,9 +12,14 @@ namespace AfwezigheidsApp
         {
             _werknemerId = werknemerId;
             InitializeComponent();
+            
             // Set minimum date to today
             dtpStartDatum.MinDate = DateTime.Today;
             dtpEindDatum.MinDate = DateTime.Today;
+            
+            // Configure date pickers to show Dutch date format
+            dtpStartDatum.Format = DateTimePickerFormat.Long;
+            dtpEindDatum.Format = DateTimePickerFormat.Long;
         }
 
         private bool HeeftOverlappendVerlof(DateTime startDatum, DateTime eindDatum)

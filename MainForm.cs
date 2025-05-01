@@ -19,6 +19,7 @@ namespace AfwezigheidsApp
         private ToolStripMenuItem? menuRegistreerVerlof;
         private ToolStripMenuItem? menuBekijkAlleVerlof;
         private ToolStripMenuItem? menuSluiten;
+        private Panel? scrollPanel; // Added scrollable panel
 
         /// <summary>
         /// Het hoofdscherm van de applicatie dat verschillende functionaliteiten toont
@@ -50,9 +51,18 @@ namespace AfwezigheidsApp
             this.menuRegistreerVerlof = new ToolStripMenuItem();
             this.menuBekijkAlleVerlof = new ToolStripMenuItem();
             this.menuSluiten = new ToolStripMenuItem();
+            this.scrollPanel = new Panel(); // Create scrollable panel
             
             ((System.ComponentModel.ISupportInitialize)(this.dgvAfwezigheid)).BeginInit();
             this.menuStrip.SuspendLayout();
+            
+            // Configure scrollable panel
+            this.scrollPanel.AutoScroll = true;
+            this.scrollPanel.Dock = DockStyle.Fill;
+            this.scrollPanel.Location = new System.Drawing.Point(0, 28);
+            this.scrollPanel.Name = "scrollPanel";
+            this.scrollPanel.Size = new System.Drawing.Size(800, 472);
+            this.scrollPanel.TabIndex = 2;
             
             // MenuStrip
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -104,22 +114,24 @@ namespace AfwezigheidsApp
             this.menuSluiten.Click += new System.EventHandler(this.MenuSluiten_Click);
             
             // Configuratie van het DataGridView met afwezigheidsgegevens
-            this.dgvAfwezigheid.Dock = DockStyle.None;
-            this.dgvAfwezigheid.Location = new System.Drawing.Point(0, 50);
+            this.dgvAfwezigheid.Dock = DockStyle.Top;
+            this.dgvAfwezigheid.Location = new System.Drawing.Point(0, 0);
             this.dgvAfwezigheid.Name = "dgvAfwezigheid";
             this.dgvAfwezigheid.Size = new System.Drawing.Size(800, 450);
             this.dgvAfwezigheid.TabIndex = 0;
+            this.dgvAfwezigheid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             
             // Update form properties
             this.Text = "Afwezigheid";
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 500);
-            this.MinimumSize = new System.Drawing.Size(800, 500);
-            this.MaximumSize = new System.Drawing.Size(800, 500);
+            this.MinimumSize = new System.Drawing.Size(600, 400); // Changed minimum size
+            this.MaximumSize = new System.Drawing.Size(0, 0); // Remove maximum size restriction
             
-            // Add controls to form
-            this.Controls.Add(this.dgvAfwezigheid);
+            // Add controls to form - add DataGridView to scrollPanel, then scrollPanel to form
+            this.scrollPanel.Controls.Add(this.dgvAfwezigheid);
+            this.Controls.Add(this.scrollPanel);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
             

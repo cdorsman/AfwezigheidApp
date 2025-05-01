@@ -26,7 +26,7 @@ namespace AfwezigheidsApp
             {
                 conn.Open();
 
-                // Genereer een SHA512 hash van het wachtwoord via MySQL
+                // Genereer een SHA512 hash van het wachtwoord via MySQL 
                 using var hashCmd = new MySqlCommand("SELECT SHA2(@password, 512) as hash", conn);
                 hashCmd.Parameters.AddWithValue("@password", txtWachtwoord.Text);
                 string passwordHash = hashCmd.ExecuteScalar()?.ToString() ?? "";

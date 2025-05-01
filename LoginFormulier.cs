@@ -70,10 +70,10 @@ namespace AfwezigheidsApp
 
                     if (passwordValid)
                     {
-                        // Login succesvol, open het hoofdscherm
+                        // Login succesvol, open het MainForm als hoofdscherm
                         this.Hide();
-                        var mainForm = new MainForm(rol, werknemerId);
-                        mainForm.ShowDialog();
+                        var hoofdForm = new MainForm(rol, werknemerId);
+                        hoofdForm.ShowDialog();
                         this.Close();
                     }
                     else
